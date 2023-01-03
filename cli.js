@@ -22,7 +22,7 @@ INPUT:
 OPTIONS:
     -h,--help                       Prints this help menu
     -v,--version                    Prints version
-    -f,--config-file                Specify a config file (default is "$HOME/.config/jsp/config.json")
+    -f,--config-file                Specify a config file (default is "$HOME/.config/jcs/config.json")
     -i,--indent                     Set the indent format (string value)
        --EOL                        Set the EOL format (string value)
        --colon                      Set the colon format (string value)
@@ -36,7 +36,7 @@ let args = process.argv.slice(2);
 
 
 // Set defaults
-let config_fp = `${process.env.HOME}/.config/jsp/config.json`;
+let config_fp = `${process.env.HOME}/.config/jcs/config.json`;
 let colorize = undefined;
 let suppress_quotes = undefined;
 let indent = undefined;
