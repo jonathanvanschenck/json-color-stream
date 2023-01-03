@@ -75,6 +75,20 @@ class JSONStream extends EventEmitter {
         sp.on("data", (chunk) => out += chunk);
         return sp.end(string).then(() => out);
     }
+
+    /**
+     * Statically parse a javascript object into a JSON string.
+     *
+     * @param {object|Array} object - The javascript object to parse
+     * @param {object} [opts={}] - Options, @see {@link Renderer#constructor}
+     * @returns {string} The parsed JSON string.
+     */
+    static stringify(object, opts={}) {
+        const sp = new JSONStream(opts);
+        let out = "";
+        sp.on("data", (chunk) => out += chunk);
+        return sp.end(JSON.stringify(object)).then(() => out);
+    }
 }
 
 module.exports = exports = {

@@ -30,6 +30,7 @@ Class representing a JSONStream.
         * ["end"](#JSONStream+event_end)
     * _static_
         * [.parse(string, [opts])](#JSONStream.parse) ⇒ <code>string</code>
+        * [.stringify(object, [opts])](#JSONStream.stringify) ⇒ <code>string</code>
 
 <a name="new_JSONStream_new"></a>
 
@@ -94,6 +95,19 @@ Statically parse a JSON string.
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
 | string | <code>string</code> |  | The JSON string to parse. |
+| [opts] | <code>object</code> | <code>{}</code> | Options, @see [Renderer#constructor](Renderer#constructor) |
+
+<a name="JSONStream.stringify"></a>
+
+### JSONStream.stringify(object, [opts]) ⇒ <code>string</code>
+Statically parse a javascript object into a JSON string.
+
+**Kind**: static method of [<code>JSONStream</code>](#JSONStream)  
+**Returns**: <code>string</code> - The parsed JSON string.  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| object | <code>object</code> \| <code>Array</code> |  | The javascript object to parse |
 | [opts] | <code>object</code> | <code>{}</code> | Options, @see [Renderer#constructor](Renderer#constructor) |
 
 <a name="Parser"></a>
