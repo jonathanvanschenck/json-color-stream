@@ -1,9 +1,14 @@
 # JSON Color Stream
 A stream parser for pretty printing for JSON!
 
-A no-nonsense, low-dependancy, stream API for converting nasty and fragmented JSON strings into beautiful, cannonicalized outputs
+A no-nonsense, low-dependency, streaming API for converting nasty and fragmented JSON strings into beautiful, canonicalized outputs
 
- - Accepts either full JSON strings or serial chunk, following a "parse-as-you-go" paradigm to minimize memory overhead
+ - Accepts either full JSON strings or serial chunk, following a "parse-as-you-go" paradigm:
+    - Large JSON blobs? No problem! The minimal memory overhead has your back!
+    - Don't wait for your whole JSON string to come in, let the parser give you the fragments now!
+ - Fully configurable output format (either from the command line or a configuration file): pick your "canonical form" and make all strings obey!
+ - Integrated colorization: never let your eyes bleed again!
+ - Fully asynchronous backend: make the event loop work for you!
 
 
 Get it today, on npm!
@@ -78,4 +83,5 @@ ln -s /path/to/cli.js jcs
  - Add escaped string characters and unicode
  - Add configuration management tools to the cli
  - Clean up error reporting, for the possibility of error handling
+ - Allow parser resets
  - Fix CLI `--EOL` option to un-escape `\n` characters
