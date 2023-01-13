@@ -86,3 +86,4 @@ ln -s /path/to/cli.js jcs
  - Clean up error reporting, for the possibility of error handling
  - Allow parser resets
  - Fix CLI `--EOL` option to un-escape `\n` characters
+ - Add filtering, like some subset of jq?
