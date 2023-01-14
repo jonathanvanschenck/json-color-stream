@@ -28,6 +28,8 @@ OPTIONS:
        --colon                      Set the colon format (string value)
     -c,--colorize-mode              Set the colorization mode (boolean value)
     -q,--quote-suppression-mode     Set the quote suppression mode (boolean value)
+    -u,--escape-unicode             Set if non-ascii (unicode) characters should be escaped (boolean value)
+    -w,--escape-whitespace          Set if non-space characters should be escaped (boolean value)
 `;
 
 
@@ -39,6 +41,8 @@ let args = process.argv.slice(2);
 let config_fp = `${process.env.HOME}/.config/jcs/config.json`;
 let colorize = undefined;
 let suppress_quotes = undefined;
+let escape_whitespace = undefined;
+let escape_unicode = undefined;
 let indent = undefined;
 let EOL = undefined;
 let colon = undefined;
@@ -54,10 +58,22 @@ while ( args.length > 0 ) {
             break;
         case "-i":
         case "--indent":
-            indent = args.shift();
+            // Get the indent string, but interpret the special values as their whitespace equivalents
+            indent = args.shift()
+                .replace(/[\\b]/g, "\b")
+                .replace(/[\\f]/g, "\f")
+                .replace(/[\\n]/g, "\n")
+                .replace(/[\\r]/g, "\r")
+                .replace(/[\\t]/g, "\t");
             break;
         case "--EOL":
-            EOL = args.shift();
+            // Get the indent string, but interpret the special values as their whitespace equivalents
+            EOL = args.shift()
+                .replace(/[\\b]/g, "\b")
+                .replace(/[\\f]/g, "\f")
+                .replace(/[\\n]/g, "\n")
+                .replace(/[\\r]/g, "\r")
+                .replace(/[\\t]/g, "\t");
             break;
         case "--colon":
             colon = args.shift();
@@ -101,6 +117,52 @@ while ( args.length > 0 ) {
                 case "F":
                 case "0":
                     suppress_quotes = false;
+                    break;
+                default:
+                    console.error(`Unknown mode: ${arg}`);
+                    console.log(HELP);
+                    process.exit(1);
+            }
+            break;
+        case "-u":
+        case "--escape-unicode":
+            switch (arg = args.shift()) {
+                case "true":
+                case "True":
+                case "t":
+                case "T":
+                case "1":
+                    escape_unicode = true;
+                    break;
+                case "false":
+                case "False":
+                case "f":
+                case "F":
+                case "0":
+                    escape_unicode = false;
+                    break;
+                default:
+                    console.error(`Unknown mode: ${arg}`);
+                    console.log(HELP);
+                    process.exit(1);
+            }
+            break;
+        case "-w":
+        case "--escape-whitespace":
+            switch (arg = args.shift()) {
+                case "true":
+                case "True":
+                case "t":
+                case "T":
+                case "1":
+                    escape_whitespace = true;
+                    break;
+                case "false":
+                case "False":
+                case "f":
+                case "F":
+                case "0":
+                    escape_whitespace = false;
                     break;
                 default:
                     console.error(`Unknown mode: ${arg}`);
@@ -167,6 +229,8 @@ if ( EOL !== undefined ) config.EOL = EOL;
 if ( colon !== undefined ) config.colon = colon;
 if ( colorize !== undefined ) config.colorize = colorize;
 if ( suppress_quotes !== undefined ) config.suppress_quotes = suppress_quotes;
+if ( escape_whitespace !== undefined ) config.escape_whitespace = escape_whitespace;
+if ( escape_unicode !== undefined ) config.escape_unicode = escape_unicode;
 
 // Handle piped input
 if ( input == "-" ) {
