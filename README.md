@@ -98,10 +98,9 @@ ln -s /path/to/cli.js jcs
 ```
 
 ## TODOs
- - Add escaped string characters and unicode
  - Add configuration management tools to the cli
+ - Add some convenient overrides to cli, for things like "--cannonicalize"
  - Add non-composite starts for JSON strings?
  - Clean up error reporting, for the possibility of error handling
  - Allow parser resets
- - Fix CLI `--EOL` option to un-escape `\n` characters
  - Add filtering, like some subset of jq?
