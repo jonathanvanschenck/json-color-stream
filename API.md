@@ -231,8 +231,10 @@ Constructor
 | [options.indent] | <code>string</code> | <code>&quot;&#x27;    &#x27;&quot;</code> | The string to use for indentation |
 | [options.EOL] | <code>string</code> | <code>&quot;\\n&quot;</code> | The string to use for EOL |
 | [options.colon] | <code>string</code> | <code>&quot;:&quot;</code> | The string to use for colons |
+| [options.suppress_quotes] | <code>boolean</code> | <code>true</code> | Whether to suppress quotes |
+| [options.escape_whitespace] | <code>boolean</code> | <code>true</code> | Whether to escape (non-space) whitespace |
+| [options.escape_unicode] | <code>boolean</code> | <code>false</code> | Whether to escape unicode characters |
 | [options.colorize] | <code>boolean</code> | <code>true</code> | Whether to colorize the output |
-| [options.suppress_quotes] | <code>boolean</code> | <code>false</code> | Whether to suppress quotes |
 | [options.quotes_color] | <code>string</code> | <code>&quot;default&quot;</code> | - |
 | [options.quotes_faint] | <code>boolean</code> | <code>true</code> | - |
 | [options.colon_color] | <code>string</code> | <code>&quot;default&quot;</code> | - |

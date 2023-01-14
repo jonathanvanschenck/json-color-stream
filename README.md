@@ -52,14 +52,32 @@ jcs --help
 # Format JSON strings
 jcs '{"a": 1}'
 
-# Can pipe to stdin too!
+# Can pipe to stdin too! Just use the "-" argument
 curl -s https://api.github.com/users/jonathanvanschenck/repos | jcs -
 
 # Can turn off colors, and quote suppression, so that your eyes can bleed
 jcs --colorize-mode 0 --quote-suppression-mode 0 '{"a": 1}'
 
-# Can turn off the pretty formatting, to, if you just want to cannonicalize the output
-jcs --indent "" --EOL "" --colon ":" --colorize-mode 0 --quote-suppression-mode 0 ' { "a" : 1}       '
+# Okay, maybe its just that you are piping to a file or your terminal doesn't support joy and beauty,
+#  in that case, you might want to make turn on character escaping too:
+jcs \
+  --colorize-mode 0 \
+  --quote-suppression-mode 0 \
+  --escape-whitespace 1 \
+  --escape-unicode 1 \
+  '{"a": 1, ["\n", "\u00f6"]}'
+
+# Or maybe you just want to cannonicalize the output, in which case you can turn everything off:
+#  like pretty formats, etc. 
+jcs \
+  --indent "" \
+  --EOL "" \
+  --colon ":" \
+  --colorize-mode 0 \
+  --quote-suppression-mode 0 \
+  --escape-whitespace 1 \
+  --escape-unicode 1 \
+  '{"a": 1, ["\n", "\u00f6"]}'
 ```
 
 If you don't like any of the defaults, you can edit them in `$HOME/.config/jcs/config.json`,
