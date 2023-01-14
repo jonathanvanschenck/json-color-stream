@@ -196,6 +196,49 @@ describe("Parser", function() {
             expect(tokens[1].type).to.equal("number");
             expect(tokens[1].value).to.equal("1");
         });
+
+        it("Can parse escaped string characters", async function() {
+            const tokens = await Parser.parse('[ "\\"","\\\\","\\/","\\b","\\f","\\n","\\r","\\t" ]');
+            expect(tokens[1].type).to.equal("string");
+            expect(tokens[1].value).to.equal('"');
+
+            expect(tokens[2].type).to.equal("string");
+            expect(tokens[2].value).to.equal('\\');
+
+            expect(tokens[3].type).to.equal("string");
+            expect(tokens[3].value).to.equal("/");
+
+            expect(tokens[4].type).to.equal("string");
+            expect(tokens[4].value).to.equal("\b");
+
+            expect(tokens[5].type).to.equal("string");
+            expect(tokens[5].value).to.equal("\f");
+
+            expect(tokens[6].type).to.equal("string");
+            expect(tokens[6].value).to.equal("\n");
+
+            expect(tokens[7].type).to.equal("string");
+            expect(tokens[7].value).to.equal("\r");
+
+            expect(tokens[8].type).to.equal("string");
+            expect(tokens[8].value).to.equal("\t");
+        });
+
+        it("Can parse escaped unicode characters", async function() {
+            const tokens = await Parser.parse('[ "\\u00f6" ]'); // o with umlat
+            expect(tokens[1].type).to.equal("string");
+            expect(tokens[1].value).to.equal("\u00f6");
+        });
+
+        it("Fail for bad escapes", async function() {
+            const tokens = await Parser.parse('[ "\\ubadu" ]').catch(e => {
+                if ( e.message.includes(`Unexpected escaped character \\ubadu`)) {
+                    return null;
+                }
+                throw e;
+            });
+            expect(tokens).to.equal(null);
+        });
     });
 });
 /* eslint-enable no-unused-vars */
