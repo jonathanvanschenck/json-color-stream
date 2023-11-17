@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/jonathanvanschenck/json-color-stream#readme",
   "dependencies": {
-    "yaclc": "^1.0.0"
+    "yaclc": "^1.1.0"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.19.1",
