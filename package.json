@@ -1,6 +1,6 @@
 {
   "name": "json-color-stream",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "A stream parser for pretty printing for JSON",
   "main": "index.js",
   "scripts": {
